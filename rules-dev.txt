@@ -1,0 +1,24 @@
+1- Todos los archivos que contengan sintaxis jsx deben terminar con la extensión .jsx
+
+2- Aquellos archivos que no tengan sintaxis jsx deben terminar con la extensión .js
+
+3- Para exportar los elementos de la app se usará la siguiente sintaxis:
+    export const CaribeanApp = () => <h1>Hola mundo</h1>;
+
+4- Evitar la siguiente exportación a menos que sea necesaria.
+    const CaribeanApp = () => <h1>Hola mundo</h1>;
+    export default CaribeanApp;
+
+5- Se verificarán los tipos de datos de aquellos componentes que tengan sus props por medio del uso de los PropTypes.
+
+6- Todos los componentes que contengan sintaxis jsx deberán utilizar la convención PascalCase.
+    export const CaribeanApp = () => <h1>Hola mundo</h1>;
+
+7- El uso del ; al final de cada sentencia de código es necesario.
+
+8- Se usarán Arrows Funtions para la creación de funciones.
+    const test = () => "Soy una arrow funtion que retorna un string";
+    console.log(test());
+
+9- Nunca se trabajará en la rama padre, para ello se creará una nueva rama cuando se trabaje una nueva funcionalidad, se harán los respectivos
+commits y una vez terminada se funcionará con la rama padre.
