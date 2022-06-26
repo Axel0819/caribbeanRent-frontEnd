@@ -20,5 +20,18 @@
     const test = () => "Soy una arrow funtion que retorna un string";
     console.log(test());
 
-9- Nunca se trabajará en la rama padre, para ello se creará una nueva rama cuando se trabaje una nueva funcionalidad, se harán los respectivos
+9- Se utilizará comillas sencillas para js(incluyendo importaciones) y comillas dobles para las etiquetas html
+    Recomendable:
+        import prop from './index.js';
+        const text = 'Hola';
+    No recomendable:
+        import prop from "./getValue.js";
+        const text = "Hola";
+
+    Recomendable:
+        <h1 className="bold p-4">Hola, soy un titulo</h1>
+    No recomendable
+        <h1 className='bold p-4'>Hola, soy un titulo</h1>
+
+10- Nunca se trabajará en la rama padre, para ello se creará una nueva rama cuando se trabaje una nueva funcionalidad, se harán los respectivos
 commits y una vez terminada se funcionará con la rama padre.
