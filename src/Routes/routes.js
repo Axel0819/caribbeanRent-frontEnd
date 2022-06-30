@@ -1,4 +1,5 @@
 import { HomePage, RoomPage, FavoritesPage, PostRommiePage } from '../Pages';
+import { MainAdmin } from '../Pages/MainAdmin';
 
 export const routes = [
     {
@@ -20,5 +21,13 @@ export const routes = [
         id: 4,
         path: 'post',
         Component: PostRommiePage
+    }
+]
+
+export const routesAdmin = [
+    {
+        id: 5,
+        path: '',
+        Component: MainAdmin
     }
 ]
