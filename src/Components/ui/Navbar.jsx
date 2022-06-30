@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { MainLayoutContext } from '../../Services/Context/MainLayoutContext';
 
 export const Navbar = () => {
+    const { handleOpenModal } = useContext(MainLayoutContext)
     return (
-        <nav>
+        <nav style={{gap: '50px'}} className="flex">
             <div>Navbar</div>
             <ul>
                 <li>
@@ -11,6 +14,8 @@ export const Navbar = () => {
                     </NavLink>
                 </li>
             </ul>
+
+            <button onClick={ handleOpenModal }>Abrir modal</button>
         </nav>
     )
 }
