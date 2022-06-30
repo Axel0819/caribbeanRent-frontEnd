@@ -1,26 +1,24 @@
-import * as React from 'react';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  CssBaseline,
+  Drawer as MuiDrawer,
+  Box,
+  AppBar as MuiAppBar,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  Badge,
+  Container
+} from '@mui/material';
+
+import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
-// import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import { MainListItems, SecondaryListItems } from './ListItems';
 
 const drawerWidth = 240;
 
@@ -70,8 +68,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
+const DashboardContent = () => {
+  const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -129,9 +127,9 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            {MainListItems}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {SecondaryListItems}
           </List>
         </Drawer>
         <Box
@@ -147,8 +145,10 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <h1>Tamo ready</h1>
+          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+            
+            <Outlet />
+
           </Container>
         </Box>
       </Box>
@@ -156,9 +156,7 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export const Dashboard = () => <DashboardContent />;
 
 
 {/* <Grid container spacing={3}>

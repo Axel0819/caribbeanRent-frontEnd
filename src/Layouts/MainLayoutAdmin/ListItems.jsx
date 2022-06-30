@@ -10,7 +10,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
-export const mainListItems = (
+export const MainListItems = (
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
@@ -45,7 +45,7 @@ export const mainListItems = (
   </React.Fragment>
 );
 
-export const secondaryListItems = (
+export const SecondaryListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       Saved reports
