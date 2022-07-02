@@ -17,8 +17,6 @@ const Card = () => <Link to='rooms/2'>
 export const HomePage = () => {
   return (
     <div>
-      <h1>Home page</h1>
-      <hr />
 
       <div style={{
         display: 'flex',
