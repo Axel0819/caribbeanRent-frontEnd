@@ -16,6 +16,10 @@
   gap: 20px;
 }
 
+.gap-30 {
+  gap: 30px;
+}
+
 .navbar-border-bottom {
   border-bottom: 1px solid #4EC3BD;
   box-shadow: 0px 0px 5px 0px #4EC3BD80;
