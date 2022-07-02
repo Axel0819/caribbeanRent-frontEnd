@@ -1,5 +1,15 @@
+import { Container } from "@mui/material";
+
+
 export const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer style={{
+      backgroundColor: "red"
+    }}>
+      <Container>
+        Footer
+
+      </Container>
+    </footer>
   );
 }
