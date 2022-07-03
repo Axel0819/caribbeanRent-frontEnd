@@ -64,65 +64,40 @@ export const Register = () => {
             <Stepper nonLinear activeStep={activeStep}>
                 {steps.map((label, index) => (
                     <Step key={label} completed={completed[index]}>
-                        <StepButton color="inherit" onClick={handleStep(index)}>
+                        <StepButton color="inherit">
                             {label}
                         </StepButton>
                     </Step>
                 ))}
             </Stepper>
             <div>
-                {allStepsCompleted() ? (
+                {
                     <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>
-                            All steps completed - you&apos;re finished
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                            <Box sx={{ flex: '1 1 auto' }} />
-                            <Button onClick={handleReset}>Reset</Button>
-                        </Box>
-                    </React.Fragment>
-                ) : (
-                    <React.Fragment>
-                        {
-                            activeStep === 0 ? (
-                                <div className="mt-2 mb-1">
-                                    <TypeUserForm />
-                                </div>
-                            ) : (
-                                <div className="mt-2 mb-1">
+                        <div className="mt-5 mb-3">
+                            {
+                                activeStep === 0 ? (
+                                    <TypeUserForm handleNext={handleNext} />
+                                ) : (
                                     <h5>Aqui va el segundo form</h5>
-                                </div>
-                            )
-                        }
+                                )
+                            }
+                        </div>
                         {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
                         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                             <Button
-                                color="inherit"
+                                color="primary"
+                                variant="outlined"
                                 disabled={activeStep === 0}
                                 onClick={handleBack}
                                 sx={{ mr: 1 }}
                             >
-                                Back
+                                Regresar
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
-                            <Button onClick={handleNext} sx={{ mr: 1 }}>
-                                Next
-                            </Button>
-                            {activeStep !== steps.length &&
-                                (completed[activeStep] ? (
-                                    <Typography variant="caption" sx={{ display: 'inline-block' }}>
-                                        Step {activeStep + 1} already completed
-                                    </Typography>
-                                ) : (
-                                    <Button onClick={handleComplete}>
-                                        {completedSteps() === totalSteps() - 1
-                                            ? 'Finish'
-                                            : 'Complete Step'}
-                                    </Button>
-                                ))}
+
                         </Box>
                     </React.Fragment>
-                )}
+                }
             </div>
         </Box>
     );
