@@ -4,6 +4,7 @@ import { Container } from '@mui/material'
 import { Navbar } from '../Components/ui/Navbar';
 import { MainLayoutContext } from '../Services/Context/MainLayoutContext';
 import { ModalApp } from '../Components/ui/ModalApp';
+import { Register } from '../Components/Register';
 import { Footer } from '../Components/ui/Footer';
 
 export const MainLayout = () => {
@@ -29,11 +30,7 @@ export const MainLayout = () => {
       {
         openModal &&
         <ModalApp>
-          <h1>Soy login</h1>
-          <h1>Soy login</h1>
-          <h1>Soy login</h1>
-          <h1>Soy login</h1>
-          <h1>Soy login</h1>
+          <Register />
         </ModalApp>
       }
 
