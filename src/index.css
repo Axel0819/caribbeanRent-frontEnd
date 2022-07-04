@@ -115,3 +115,30 @@
   color: #4EC3BD;
 }
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3B7D7A; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3B7D7A; 
+}
+
+
+.span-action {
+  border-bottom: 1px solid #4EC3BD;
+  color: #4EC3BD;
+  cursor: pointer;
+}

@@ -1,12 +1,12 @@
-import { useState } from 'react' 
-import { Divider } from '@mui/material'
+import { useState } from 'react';
+import { Divider } from '@mui/material';
 
 export const TypeUserForm = ({ handleNext }) => {
     const [userType, setUserType] = useState(0) // aqui se guarda el tipo de usuario
 
     return (
         <div className="flex flex-column gap-20">
-            <h3 style={{ fontSize: '20px', color: '222222' }} className="text-center">¿Que deseas hacer?</h3>
+            <h3 style={{ color: '222222' }} className="text-xl font-normal text-center"> <b>¿Que deseas hacer?</b> </h3>
 
             {/* <hr style={{ color: '#3B7D7A' }} /> */}
             <Divider sx={{ backgroundColor: '#3B7D7A' }} />

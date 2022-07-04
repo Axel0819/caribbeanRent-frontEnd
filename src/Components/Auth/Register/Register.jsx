@@ -4,8 +4,8 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { TypeUserForm } from './Register/TypeUserForm';
+import { FormRegisterUser } from './FormRegisterUser';
+import { TypeUserForm } from './TypeUserForm';
 
 const steps = ['Tipo de usuario', 'Terminar registro'];
 
@@ -78,7 +78,7 @@ export const Register = () => {
                                 activeStep === 0 ? (
                                     <TypeUserForm handleNext={handleNext} />
                                 ) : (
-                                    <h5>Aqui va el segundo form</h5>
+                                    <FormRegisterUser />
                                 )
                             }
                         </div>

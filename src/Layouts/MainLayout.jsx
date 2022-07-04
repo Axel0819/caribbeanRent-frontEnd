@@ -4,7 +4,7 @@ import { Container } from '@mui/material'
 import { Navbar } from '../Components/ui/Navbar';
 import { MainLayoutContext } from '../Services/Context/MainLayoutContext';
 import { ModalApp } from '../Components/ui/ModalApp';
-import { Register } from '../Components/Register';
+import { Register } from '../Components/Auth';
 import { Footer } from '../Components/ui/Footer';
 
 export const MainLayout = () => {
