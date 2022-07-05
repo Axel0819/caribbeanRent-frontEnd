@@ -64,13 +64,13 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem>
+                <MenuItem onClick={() => handleOpenModal(1) }>
                     <ListItemIcon>
                         <LoginIcon color="primary" fontSize="small" />
                     </ListItemIcon>
                     Iniciar sesión
                 </MenuItem>
-                <MenuItem onClick={ handleOpenModal }>
+                <MenuItem onClick={() => handleOpenModal(2) }>
                     <ListItemIcon>
                         <PersonAddIcon color="primary" fontSize="small" />
                     </ListItemIcon>
