@@ -115,6 +115,10 @@
   color: #4EC3BD;
 }
 
+.card-styles:hover {
+  cursor: pointer;
+  outline: 2px solid #4EC3BD;
+}
 
 /* width */
 ::-webkit-scrollbar {
