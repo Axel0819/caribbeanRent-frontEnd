@@ -6,6 +6,7 @@ import { MainLayoutContext } from '../Services/Context/MainLayoutContext';
 import { ModalApp } from '../Components/ui/ModalApp';
 import { Register } from '../Components/Auth';
 import { Footer } from '../Components/ui/Footer';
+import { Login } from '../Components/Auth/Login/Login';
 
 export const MainLayout = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -30,7 +31,8 @@ export const MainLayout = () => {
       {
         openModal &&
         <ModalApp>
-          <Register />
+          {/* <Register /> */}
+          <Login />
         </ModalApp>
       }
 
