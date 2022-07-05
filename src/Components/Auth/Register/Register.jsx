@@ -6,12 +6,20 @@ import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import { FormRegisterUser } from './FormRegisterUser';
 import { TypeUserForm } from './TypeUserForm';
+import { useForm } from '../../../Hooks/useForm';
 
 const steps = ['Tipo de usuario', 'Terminar registro'];
 
 export const Register = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState({});
+
+    const [values, handleInputChange, handleRole, reset] = useForm({
+        email: "",
+        password: "",
+        role: 0,
+        state: 0
+    })
 
     const totalSteps = () => {
         return steps.length;
@@ -76,9 +84,9 @@ export const Register = () => {
                         <div className="mt-5 mb-3">
                             {
                                 activeStep === 0 ? (
-                                    <TypeUserForm handleNext={handleNext} />
+                                    <TypeUserForm values={values} handleRole={handleRole} handleNext={handleNext} />
                                 ) : (
-                                    <FormRegisterUser />
+                                    <FormRegisterUser values={values} handleInputChange={handleInputChange} />
                                 )
                             }
                         </div>
