@@ -9,7 +9,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 'auto',
     bgcolor: 'background.paper',
     boxShadow: 24,
     padding: '20px 25px 20px 25px',
@@ -29,40 +29,40 @@ export const ModalApp = ({ children }) => {
 
     return (
         <ThemeProvider theme={theme}>
-        <div>
+            <div>
 
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                open={openModal}
-                onClose={handleCloseModal}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Fade in={openModal}>
-                    <Box sx={style}>
-                        <Fab
-                            onClick={ handleCloseModal }
-                            style={{
-                                position: 'fixed',
-                                top: -20,
-                                right: -20
-                            }} 
-                            className="box-shadow" 
-                            size="medium" 
-                            color="inherit" 
-                            aria-label="close"
-                        >
-                            <CloseIcon color="primary" style={{ fontSize: '28px' }} />
-                        </Fab>
-                        {children}
-                    </Box>
-                </Fade>
-            </Modal>
-        </div>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    open={openModal}
+                    onClose={handleCloseModal}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={openModal}>
+                        <Box sx={style}>
+                            <Fab
+                                onClick={handleCloseModal}
+                                style={{
+                                    position: 'fixed',
+                                    top: -20,
+                                    right: -20
+                                }}
+                                className="box-shadow"
+                                size="medium"
+                                color="inherit"
+                                aria-label="close"
+                            >
+                                <CloseIcon color="primary" style={{ fontSize: '28px' }} />
+                            </Fab>
+                            {children}
+                        </Box>
+                    </Fade>
+                </Modal>
+            </div>
         </ThemeProvider>
     );
 }
