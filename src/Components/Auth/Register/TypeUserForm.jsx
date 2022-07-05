@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Divider } from '@mui/material';
 
-export const TypeUserForm = ({ handleNext }) => {
+export const TypeUserForm = ({ handleRole, handleNext, values }) => {
     const [userType, setUserType] = useState(0) // aqui se guarda el tipo de usuario
 
     return (
@@ -14,12 +14,12 @@ export const TypeUserForm = ({ handleNext }) => {
             <div
                 className="register-options-user flex justify-content-center py-4"
                 tabIndex={1}
-                style={{ backgroundColor: userType === 1 && "#3B7D7A",
-                    color: userType === 1 && "#FFFFFF" }}
-                onFocus={() => setUserType(1)}
+                style={{ backgroundColor: values.role === 1 && "#3B7D7A",
+                    color: values.role === 1 && "#FFFFFF" }}
+                onFocus={() => handleRole(1)}
                 >
                 <div className="flex align-items-center gap-20">
-                    <i style={{ color: userType === 1 ? "white" : "#3B7D7A" }} className="fa-solid fa-magnifying-glass icon-size"></i>
+                    <i style={{ color: values.role === 1 ? "white" : "#3B7D7A" }} className="fa-solid fa-magnifying-glass icon-size"></i>
                     <p>Buscar un alquiler</p>
                 </div>
             </div>
@@ -27,20 +27,20 @@ export const TypeUserForm = ({ handleNext }) => {
             <div 
                 className="register-options-user flex justify-content-center py-4" 
                 tabIndex={1}
-                style={{ backgroundColor: userType === 2 && "#3B7D7A",
-                    color: userType === 2 && "#FFFFFF" }}
-                onFocus={() => setUserType(2)}
+                style={{ backgroundColor: values.role === 2 && "#3B7D7A",
+                    color: values.role === 2 && "#FFFFFF" }}
+                onFocus={() => handleRole(2)}
             >
                 <div className="flex align-items-center gap-20">
-                    <i style={{ color: userType === 2 ? "white" : "#3B7D7A" }} className="fa-solid fa-pen-to-square icon-size"></i>
+                    <i style={{ color: values.role === 2 ? "white" : "#3B7D7A" }} className="fa-solid fa-pen-to-square icon-size"></i>
                     <p>Publicar un alquiler</p>
                 </div>
             </div>
 
             <button 
-                className={`button-style ${ userType === 0 ? "button-disabled" : "button-action" }` }
+                className={`button-style ${ values.role === 0 ? "button-disabled" : "button-action" }` }
                 onClick={ handleNext }
-                disabled={userType === 0 ? true : false}
+                disabled={values.role === 0 ? true : false}
             >Continuar</button>
             {/* <div className="register-options-user" onClick={() => handleClick(2)}>Publicar un alquiler</div> */}
 

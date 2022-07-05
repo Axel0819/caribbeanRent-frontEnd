@@ -4,9 +4,17 @@ import { HeadFormCredentials } from '../HeadFormCredentials';
 import { TextField } from '@mui/material';
 import { ActionFooterAuth } from '../ActionFooterAuth';
 import { useLayoutEffect, useRef } from 'react';
+import { useForm } from '../../../Hooks/useForm';
 
-export const FormRegisterUser = () => {
+export const FormRegisterUser = ({values, handleInputChange}) => {
     const divScroll = useRef();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(values);
+
+    }
 
     useLayoutEffect(() => {
         if(divScroll.current === undefined) return;
@@ -36,7 +44,7 @@ export const FormRegisterUser = () => {
 
             <DividerForm />
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="flex flex-column gap-20">
                     <div className="flex gap-20">
                         <TextField label="Nombre" variant="outlined" />
@@ -44,11 +52,11 @@ export const FormRegisterUser = () => {
                     </div>
 
                     <div>
-                        <TextField fullWidth label="Correo" variant="outlined" />
+                        <TextField name="email" fullWidth label="Correo" value={values.email} onChange={handleInputChange} variant="outlined" />
                     </div>
 
                     <div className="flex gap-20">
-                        <TextField label="Contraseña" variant="outlined" />
+                        <TextField name="password" value={values.password} onChange={handleInputChange} label="Contraseña" type="password" variant="outlined" />
                         <TextField label="Confirmar contraseña" variant="outlined" />
                     </div>
 
