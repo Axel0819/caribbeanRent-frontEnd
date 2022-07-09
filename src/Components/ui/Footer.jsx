@@ -1,11 +1,8 @@
 import { Container } from "@mui/material";
 
-
 export const Footer = () => {
   return (
-    <footer className="footer-border-top py-3" style={{
-      //backgroundColor: "red"
-    }}>
+    <footer className="footer-border-top py-3" >
       <Container>
         <div className="flex justify-content-between flex-wrap">
           <p>

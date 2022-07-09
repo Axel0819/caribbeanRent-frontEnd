@@ -1,20 +1,8 @@
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { createTheme, ThemeProvider } from '@mui/material';
 import { useContext } from 'react';
-import { MainLayoutContext } from '../../Services/Context/MainLayoutContext';
+import { Avatar, Menu, MenuItem, ListItemIcon, Divider } from '@mui/material';
+import { PersonAdd, Settings, Logout, Login } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 
 const theme = createTheme({
     palette: {
@@ -22,7 +10,7 @@ const theme = createTheme({
             main: "#3B7D7A"
         }
     }
-})
+});
 
 export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
     const { handleOpenModal } = useContext(MainLayoutContext)
@@ -66,13 +54,13 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
             >
                 <MenuItem onClick={() => handleOpenModal(1) }>
                     <ListItemIcon>
-                        <LoginIcon color="primary" fontSize="small" />
+                        <Login color="primary" fontSize="small" />
                     </ListItemIcon>
                     Iniciar sesión
                 </MenuItem>
                 <MenuItem onClick={() => handleOpenModal(2) }>
                     <ListItemIcon>
-                        <PersonAddIcon color="primary" fontSize="small" />
+                        <PersonAdd color="primary" fontSize="small" />
                     </ListItemIcon>
                     Registrarse
                 </MenuItem>

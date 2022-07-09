@@ -1,0 +1,1 @@
+export { TypeUserForm } from './TypeUserForm';

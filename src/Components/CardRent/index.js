@@ -1,0 +1,1 @@
+export { CardRent } from './CardRent';

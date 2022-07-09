@@ -3,17 +3,17 @@ import { DividerForm } from '../DividerForm';
 import { HeadFormCredentials } from '../HeadFormCredentials';
 import { TextField } from '@mui/material';
 import { ActionFooterAuth } from '../ActionFooterAuth';
-import { useLayoutEffect, useRef } from 'react';
-import { useForm } from '../../../Hooks/useForm';
+import { useContext, useLayoutEffect, useRef } from 'react';
+import { RegisterContext } from '../../../Services/Context/RegisterContext';
 
-export const FormRegisterUser = ({values, handleInputChange}) => {
+export const FormRegisterUser = () => {
+    const { values, handleInputChange } = useContext(RegisterContext)
     const divScroll = useRef();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         console.log(values);
-
     }
 
     useLayoutEffect(() => {
