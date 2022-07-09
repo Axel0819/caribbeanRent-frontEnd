@@ -10,8 +10,15 @@ import { Login } from '../Components/Auth/Login/Login';
 
 export const MainLayout = () => {
   const [openModal, setOpenModal] = useState(false);
-  const handleOpenModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
+  const [typeModal, setTypeModal] = useState(-1); // 1 login , 2 register
+  const handleOpenModal = (num) => {
+    setOpenModal(true);
+    setTypeModal(num);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setTypeModal(-1);
+  }
 
   return (
     <MainLayoutContext.Provider value={{
@@ -32,7 +39,10 @@ export const MainLayout = () => {
         openModal &&
         <ModalApp>
           {/* <Register /> */}
-          <Login />
+          {
+            typeModal === 1 ? <Login /> : <Register />  
+          }
+          
         </ModalApp>
       }
 

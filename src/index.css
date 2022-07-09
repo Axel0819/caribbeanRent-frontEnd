@@ -4,46 +4,29 @@
   box-sizing: border-box;
 }
 
-.nav-active {
-  color: red;
-}
-
 .box-shadow {
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-border-bottom {
+  border-bottom: 1px solid #4EC3BD;
+  box-shadow: 0px 0px 5px 0px #4EC3BD80;
+}
+
+/* gaps */
+.gap-15 {
+  gap: 15px;
 }
 
 .gap-20 {
   gap: 20px;
 }
 
-.register-options-user {
-  border: 1px solid #3B7D7A;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: .4s;
+.gap-30 {
+  gap: 30px;
 }
 
-.register-options-user p {
-  font-size: 20px;
-}
-
-.register-options-user i {
-  color: #3B7D7A;
-  transition: .4s;
-}
-
-.register-options-user:hover {
-  box-shadow: 0px 3px 5px -1px rgba(59, 125, 122, 0.2), 0px 6px 10px rgba(59, 125, 122, 0.14), 0px 1px 18px rgba(59, 125, 122, 0.12);
-}
-
-/* .register-options-user:focus {
-  background-color: #3B7D7A;
-  color: white;
-} */
-
-.icon-size {
-  font-size: 25px;
-}
+/* End gaps */
 
 .button-style {
   border: none;
@@ -68,30 +51,13 @@
   background-color: #cccccc;
   color: #666666;
 }
-.gap-30 {
-  gap: 30px;
-}
 
-.navbar-border-bottom {
-  border-bottom: 1px solid #4EC3BD;
-  box-shadow: 0px 0px 5px 0px #4EC3BD80;
-}
-
-.fa{
+.fa {
   font-size: 1.375rem;
   color: #4EC3BD;
 }
 
-.gap-15{
-  gap: 15px;
-}
-
-.footer-border-top{
-  border-top: 1px solid #4EC3BD;
-  box-shadow: 0px 0px 5px 0px #4EC3BD80;
-}
-
-.color-face{
+.color-face {
   color: #4267B2;
 }
 
@@ -107,18 +73,16 @@
   -webkit-text-fill-color: transparent;
 }
 
-.icon-size{
+.icon-size {
   font-size: 1.375rem;
 }
 
-.text-color{
-  color: #4EC3BD;
+.footer-border-top {
+  border-top: 1px solid #4EC3BD;
+  box-shadow: 0px 0px 5px 0px #4EC3BD80;
 }
 
-.card-styles:hover {
-  cursor: pointer;
-  outline: 2px solid #4EC3BD;
-}
+/* style scrollbar */
 
 /* width */
 ::-webkit-scrollbar {
@@ -140,9 +104,4 @@
   background: #3B7D7A; 
 }
 
-
-.span-action {
-  border-bottom: 1px solid #4EC3BD;
-  color: #4EC3BD;
-  cursor: pointer;
-}
+/* End style scrollbar */
