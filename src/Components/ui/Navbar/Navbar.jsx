@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Container, Fab } from '@mui/material';
 import { NavbarMenu } from './NavbarMenu';
 import logo from '../../../Assets/Images/logo.png';
+import { modalEnums } from '../../../Enums/modalEnums';
+import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 
 export const Navbar = () => {
+    const { handleOpenModal } = useContext(MainLayoutContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -23,7 +26,10 @@ export const Navbar = () => {
 
                     <div className="flex gap-30 align-items-center">
 
-                        <Fab size="medium">
+                        <Fab 
+                            size="medium"
+                            onClick={() => handleOpenModal(modalEnums.filter)}
+                        >
                             <i className="fa fa-solid fa-magnifying-glass"></i>
                         </Fab>
 

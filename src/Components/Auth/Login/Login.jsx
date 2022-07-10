@@ -8,9 +8,9 @@ import { ActionFooterAuth } from '../ActionFooterAuth';
 import { InputPassword } from './InputPassword';
 
 export const Login = () => {
-    
+
     return (
-        <Box sx={{ width: '450px' }}>
+        <>
             <div className="flex flex-column align-items-center gap-20 px-3">
                 <HeadFormCredentials text={"Bienvenido a"} />
 
@@ -35,6 +35,6 @@ export const Login = () => {
                     actionHandle={() => console.log("Se procede abrir el modal de registro")}
                 />
             </div>
-        </Box>
+        </>
     )
 }

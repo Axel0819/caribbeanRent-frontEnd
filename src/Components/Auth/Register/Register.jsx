@@ -50,45 +50,43 @@ export const Register = () => {
 
     return (
         <RegisterContext.Provider value={{
-            values, 
+            values,
             handleInputChange,
             handleNext
         }}>
-            <Box sx={{ width: '450px' }}>
-                <Stepper nonLinear activeStep={activeStep}>
-                    {steps.map((label, index) => (
-                        <Step key={label} completed={completed[index]}>
-                            <StepButton color="inherit">
-                                {label}
-                            </StepButton>
-                        </Step>
-                    ))}
-                </Stepper>
-                <div>
-                    <Fragment>
-                        <div className="mt-5 mb-3">
-                            {
-                                activeStep === 0 ? (
-                                    <TypeUserForm />
-                                ) : (
-                                    <FormRegisterUser />
-                                )
-                            }
-                        </div>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                            <Button
-                                color="primary"
-                                variant="outlined"
-                                disabled={activeStep === 0}
-                                onClick={handleBack}
-                                sx={{ mr: 1 }}
-                            >
-                                Regresar
-                            </Button>
-                        </Box>
-                    </Fragment>
-                </div>
-            </Box>
+            <Stepper nonLinear activeStep={activeStep}>
+                {steps.map((label, index) => (
+                    <Step key={label} completed={completed[index]}>
+                        <StepButton color="inherit">
+                            {label}
+                        </StepButton>
+                    </Step>
+                ))}
+            </Stepper>
+            <div>
+                <Fragment>
+                    <div className="mt-5 mb-3">
+                        {
+                            activeStep === 0 ? (
+                                <TypeUserForm />
+                            ) : (
+                                <FormRegisterUser />
+                            )
+                        }
+                    </div>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                        <Button
+                            color="primary"
+                            variant="outlined"
+                            disabled={activeStep === 0}
+                            onClick={handleBack}
+                            sx={{ mr: 1 }}
+                        >
+                            Regresar
+                        </Button>
+                    </Box>
+                </Fragment>
+            </div>
         </RegisterContext.Provider>
     );
 }
