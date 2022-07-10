@@ -4,12 +4,16 @@ import { FormRegisterUser } from './FormRegisterUser';
 import { TypeUserForm } from './TypeUserForm';
 import { useForm } from '../../../Hooks/useForm';
 import { RegisterContext } from '../../../Services/Context/RegisterContext';
+import { ActionFooterAuth } from '../ActionFooterAuth';
+import { useContext } from 'react';
+import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
+import { modalEnums } from '../../../Enums/modalEnums';
 
 const steps = ['Tipo de usuario', 'Terminar registro'];
 
 export const Register = () => {
+    const { handleOpenModal } = useContext(MainLayoutContext);
     const [activeStep, setActiveStep] = useState(0);
-    const [completed, setCompleted] = useState({});
 
     const [values, handleInputChange, reset] = useForm({
         email: "",
@@ -18,29 +22,8 @@ export const Register = () => {
         state: 0
     })
 
-    const totalSteps = () => {
-        return steps.length;
-    }
-
-    const completedSteps = () => {
-        return Object.keys(completed).length;
-    }
-
-    const isLastStep = () => {
-        return activeStep === totalSteps() - 1;
-    }
-
-    const allStepsCompleted = () => {
-        return completedSteps() === totalSteps();
-    }
-
     const handleNext = () => {
-        const newActiveStep =
-            isLastStep() && !allStepsCompleted()
-                ? // It's the last step, but not all steps have been completed,
-                // find the first step that has been completed
-                steps.findIndex((step, i) => !(i in completed))
-                : activeStep + 1;
+        const newActiveStep = activeStep + 1;
         setActiveStep(newActiveStep);
     }
 
@@ -55,8 +38,8 @@ export const Register = () => {
             handleNext
         }}>
             <Stepper nonLinear activeStep={activeStep}>
-                {steps.map((label, index) => (
-                    <Step key={label} completed={completed[index]}>
+                {steps.map((label) => (
+                    <Step key={label}>
                         <StepButton color="inherit">
                             {label}
                         </StepButton>
@@ -74,7 +57,7 @@ export const Register = () => {
                             )
                         }
                     </div>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, alignItems: "center" }}>
                         <Button
                             color="primary"
                             variant="outlined"
@@ -84,6 +67,13 @@ export const Register = () => {
                         >
                             Regresar
                         </Button>
+                        <Box sx={{ flex: '1 1 auto' }} />
+
+                        <ActionFooterAuth
+                            text="¿Ya tienes cuenta?"
+                            actionText="Inicia sesión"
+                            actionHandle={() => handleOpenModal(modalEnums.login)}
+                        />
                     </Box>
                 </Fragment>
             </div>

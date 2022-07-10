@@ -63,13 +63,7 @@ export const FormRegisterUser = () => {
                     <button className="button-style button-action">Registrarse</button>
                 </div>
             </form >
-
-            <ActionFooterAuth
-                text="¿Ya tienes cuenta?"
-                actionText="Inicia sesión"
-                actionHandle={() => console.log("Se procede abrir el modal del login")}
-            />
-
+            
         </div >
     )
 }

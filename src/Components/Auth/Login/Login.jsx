@@ -6,8 +6,12 @@ import { ButtonGoogle } from '../ButtonGoogle';
 import { DividerForm } from '../DividerForm';
 import { ActionFooterAuth } from '../ActionFooterAuth';
 import { InputPassword } from './InputPassword';
+import { useContext } from 'react';
+import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
+import { modalEnums } from '../../../Enums/modalEnums';
 
 export const Login = () => {
+    const { handleOpenModal } = useContext(MainLayoutContext)
 
     return (
         <>
@@ -32,7 +36,7 @@ export const Login = () => {
                 <ActionFooterAuth
                     text="¿No tienes cuenta?"
                     actionText="Regístrate"
-                    actionHandle={() => console.log("Se procede abrir el modal de registro")}
+                    actionHandle={() => handleOpenModal(modalEnums.register)}
                 />
             </div>
         </>
