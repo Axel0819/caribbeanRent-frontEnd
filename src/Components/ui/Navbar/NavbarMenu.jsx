@@ -3,6 +3,7 @@ import { Avatar, Menu, MenuItem, ListItemIcon, Divider } from '@mui/material';
 import { PersonAdd, Settings, Logout, Login } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
+import { modalEnums } from '../../../Enums/modalEnums';
 
 const theme = createTheme({
     palette: {
@@ -52,20 +53,20 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={() => handleOpenModal(1) }>
+                <MenuItem onClick={() => handleOpenModal(modalEnums.login) }>
                     <ListItemIcon>
                         <Login color="primary" fontSize="small" />
                     </ListItemIcon>
                     Iniciar sesión
                 </MenuItem>
-                <MenuItem onClick={() => handleOpenModal(2) }>
+                <MenuItem onClick={() => handleOpenModal(modalEnums.register) }>
                     <ListItemIcon>
                         <PersonAdd color="primary" fontSize="small" />
                     </ListItemIcon>
                     Registrarse
                 </MenuItem>
-                <MenuItem>
-                    <Avatar /> Profile
+                <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
+                    <Avatar /> Buscar rommie
                 </MenuItem>
                 <MenuItem>
                     <Avatar /> My account

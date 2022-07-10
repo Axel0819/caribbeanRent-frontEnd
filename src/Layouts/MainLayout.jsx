@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { Navbar } from '../Components/ui/Navbar';
 import { MainLayoutContext } from '../Services/Context/MainLayoutContext';
 import { ModalApp } from '../Components/ui/ModalApp';
 import { Register } from '../Components/Auth';
 import { Footer } from '../Components/ui/Footer';
 import { Login } from '../Components/Auth/Login/Login';
+import { modalEnums } from '../Enums/modalEnums';
 
 export const MainLayout = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [typeModal, setTypeModal] = useState(-1); // 1 login , 2 register
+  const [typeModal, setTypeModal] = useState(-1);
+  
   const handleOpenModal = (num) => {
     setOpenModal(true);
     setTypeModal(num);
-  };
+  }
+
   const handleCloseModal = () => {
     setOpenModal(false);
     setTypeModal(-1);
@@ -34,19 +37,18 @@ export const MainLayout = () => {
       {/* Footer */}
       <Footer />
 
-
       {
         openModal &&
         <ModalApp>
-          {/* <Register /> */}
-          {
-            typeModal === 1 ? <Login /> : <Register />  
-          }
+          <Box sx={{ width: '450px' }}>
+            { typeModal === modalEnums.login && <Login /> }
+            { typeModal === modalEnums.register && <Register /> }
+          </Box>
           
+          { typeModal === modalEnums.filter && <h1>Mostrando modal de filtrado</h1> }
+          { typeModal === modalEnums.rommie && <h1>Modal para buscar rommie</h1> }
         </ModalApp>
       }
-
-
 
     </MainLayoutContext.Provider>
   )
