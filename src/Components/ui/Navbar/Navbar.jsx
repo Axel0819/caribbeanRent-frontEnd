@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { Container, Fab } from '@mui/material';
 import { NavbarMenu } from './NavbarMenu';
@@ -22,7 +23,9 @@ export const Navbar = () => {
         <nav className="navbar-border-bottom py-3">
             <Container>
                 <div className="flex justify-content-between">
-                    <img width={185} src={logo} alt="Logo Caribbean Rent" />
+                    <Link to={"/"}>
+                        <img width={185} src={logo} alt="Logo Caribbean Rent" />
+                    </Link>
 
                     <div className="flex gap-30 align-items-center">
 
