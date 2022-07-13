@@ -1,26 +1,44 @@
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useContext } from 'react';
+import * as Yup from 'yup';
 import { Box, Stepper, Step, StepButton, Button } from '@mui/material';
+import { useFormik } from 'formik';
 import { FormRegisterUser } from './FormRegisterUser';
 import { TypeUserForm } from './TypeUserForm';
-import { useForm } from '../../../Hooks/useForm';
 import { RegisterContext } from '../../../Services/Context/RegisterContext';
 import { ActionFooterAuth } from '../ActionFooterAuth';
-import { useContext } from 'react';
 import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 import { modalEnums } from '../../../Enums/modalEnums';
 
 const steps = ['Tipo de usuario', 'Terminar registro'];
 
+//Notas:
+// 1. Mencionarle a Axel que el estado del usuario se agrega de forma estatica
 export const Register = () => {
     const { handleOpenModal } = useContext(MainLayoutContext);
     const [activeStep, setActiveStep] = useState(0);
 
-    const [values, handleInputChange, reset] = useForm({
-        email: "",
-        password: "",
-        role: 0,
-        state: 0
-    })
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            apellido: '',
+            email: '',
+            rPassword: '',
+            rPasswordConfirmation: '',
+            role: 0,
+        },
+        validationSchema: Yup.object().shape({
+            name: Yup.string().required('Campo requerido'),
+            apellido: Yup.string().required('Campo requerido').matches(/^[aA-zZ\S]+$/, 'No se aceptan espacios'),
+            email: Yup.string().email('Formato de correo incorrecto').required('Campo requerido'),
+            rPassword: Yup.string().min(6, 'La contraseña debe tener al menos 5 caracteres').required('La contraseña es requerida'),
+            rPasswordConfirmation: Yup.string().oneOf([Yup.ref('rPassword'), null], 'Las contraseña debe de coincidir').required('Campo requerido')
+        }),
+        onSubmit: (values, actions) => {
+            console.log(values); 
+
+            actions.resetForm();
+        }
+    });
 
     const handleNext = () => {
         const newActiveStep = activeStep + 1;
@@ -33,8 +51,9 @@ export const Register = () => {
 
     return (
         <RegisterContext.Provider value={{
-            values,
-            handleInputChange,
+            formik,
+            values: formik.values,
+            handleInputChange: formik.handleChange,
             handleNext
         }}>
             <Stepper nonLinear activeStep={activeStep}>

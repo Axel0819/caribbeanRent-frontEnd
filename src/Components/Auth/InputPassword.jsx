@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-export const InputPassword = () => {
+export const InputPassword = ({ name, label, formik }) => {
     const [values, setValues] = useState({
         showPassword: false,
     });
@@ -14,11 +14,15 @@ export const InputPassword = () => {
         });
     }
 
+    const helperText = useCallback(() => {
+        return formik.touched[name] && formik.errors[name] ? formik.errors[name] : '';
+    }, [formik.touched, formik.errors, name]);
+
     return (
         <FormControl fullWidth variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel sx={{ color: !!helperText() && '#d32f2f !important' }} htmlFor={`outlined-adornment-${label}`}>{ label }</InputLabel>
             <OutlinedInput
-                id="outlined-adornment-password"
+                id={`outlined-adornment-${label}`}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position="end">
@@ -31,8 +35,17 @@ export const InputPassword = () => {
                         </IconButton>
                     </InputAdornment>
                 }
+                name={ name }
                 label="Password"
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched[name] && formik.errors[name] ? true : false}
             />
+            {
+                !!helperText() && <FormHelperText sx={{ color: '#d32f2f' }} required>{ helperText() }</FormHelperText>
+            }
+
         </FormControl>
     )
 }
