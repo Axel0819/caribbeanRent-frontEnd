@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import { HeadFormCredentials } from '../HeadFormCredentials';
 import { Divider } from '@mui/material';
 import { ButtonGoogle } from '../ButtonGoogle';
@@ -19,9 +19,9 @@ export const Login = () => {
             email: '',
             password: ''
         },
-        validationSchema: yup.object().shape({
-            email: yup.string().email('Formato de correo incorrecto').required('Campo requerido'),
-            password: yup.string().required('Campo requerido')
+        validationSchema: Yup.object().shape({
+            email: Yup.string().email('Formato de correo incorrecto').required('Campo requerido'),
+            password: Yup.string().required('Campo requerido')
         }),
         onSubmit: (values, actions) => {
             console.log(values);
@@ -47,7 +47,7 @@ export const Login = () => {
                             formik={ formik } 
                         />
 
-                        <InputPassword name="password" formik={ formik } />
+                        <InputPassword name="password" label="Contraseña" formik={ formik } />
 
                         <button type="submit" className="button-style button-action">Continuar</button>
                     </div>

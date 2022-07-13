@@ -1,23 +1,17 @@
+import { useContext, useLayoutEffect, useRef } from 'react';
 import { ButtonGoogle } from '../ButtonGoogle';
 import { DividerForm } from '../DividerForm';
 import { HeadFormCredentials } from '../HeadFormCredentials';
-import { TextField } from '@mui/material';
-import { ActionFooterAuth } from '../ActionFooterAuth';
-import { useContext, useLayoutEffect, useRef } from 'react';
 import { RegisterContext } from '../../../Services/Context/RegisterContext';
+import { InputForm } from '../InputForm';
+import { InputPassword } from '../InputPassword';
 
 export const FormRegisterUser = () => {
-    const { values, handleInputChange } = useContext(RegisterContext)
+    const { formik } = useContext(RegisterContext);
     const divScroll = useRef();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        console.log(values);
-    }
-
     useLayoutEffect(() => {
-        if(divScroll.current === undefined) return;
+        if (divScroll.current === undefined) return;
         const scroll = divScroll.current;
         const startAnimateScroll = setTimeout(() => {
             if (scroll.scrollTop === 0) {
@@ -28,7 +22,7 @@ export const FormRegisterUser = () => {
             clearTimeout(startAnimateScroll);
         }
     }, [])
-    
+
     return (
         <div
             ref={divScroll}
@@ -44,26 +38,41 @@ export const FormRegisterUser = () => {
 
             <DividerForm />
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-column gap-20">
                     <div className="flex gap-20">
-                        <TextField label="Nombre" variant="outlined" />
-                        <TextField label="Apellidos" variant="outlined" />
+                        <InputForm
+                            name="name"
+                            type="text"
+                            label="Nombre"
+                            formik={formik}
+                        />
+                        <InputForm
+                            name="apellido"
+                            type="text"
+                            label="Apellido"
+                            formik={formik}
+                        />
                     </div>
 
                     <div>
-                        <TextField name="email" fullWidth label="Correo" value={values.email} onChange={handleInputChange} variant="outlined" />
+                        <InputForm
+                            name="email"
+                            type="email"
+                            label="Correo"
+                            formik={formik}
+                        />
                     </div>
 
                     <div className="flex gap-20">
-                        <TextField name="password" value={values.password} onChange={handleInputChange} label="Contraseña" type="password" variant="outlined" />
-                        <TextField label="Confirmar contraseña" variant="outlined" />
+                        <InputPassword name="rPassword" label="Contraseña" formik={formik} />
+                        <InputPassword name="rPasswordConfirmation" label="Confirmar" formik={formik} />
                     </div>
 
-                    <button className="button-style button-action">Registrarse</button>
+                    <button type="submit" className="button-style button-action">Registrarse</button>
                 </div>
             </form >
-            
+
         </div >
     )
 }

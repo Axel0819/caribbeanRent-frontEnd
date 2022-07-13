@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-export const InputPassword = ({ name, formik }) => {
+export const InputPassword = ({ name, label, formik }) => {
     const [values, setValues] = useState({
         showPassword: false,
     });
@@ -20,9 +20,9 @@ export const InputPassword = ({ name, formik }) => {
 
     return (
         <FormControl fullWidth variant="outlined">
-            <InputLabel sx={{ color: !!helperText() && '#d32f2f !important' }} htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel sx={{ color: !!helperText() && '#d32f2f !important' }} htmlFor={`outlined-adornment-${label}`}>{ label }</InputLabel>
             <OutlinedInput
-                id="outlined-adornment-password"
+                id={`outlined-adornment-${label}`}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position="end">
