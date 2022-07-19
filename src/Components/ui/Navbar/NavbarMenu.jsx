@@ -90,17 +90,37 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                 <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
                     <Avatar /> Buscar rommie
                 </MenuItem>
-                <MenuItem>
-                    <Avatar /> My account
-                </MenuItem>
-                <Divider />
-                <MenuItem>
-                    <ListItemIcon>
-                        <PersonAdd fontSize="small" />
-                    </ListItemIcon>
-                    Add another account
-                </MenuItem>
 
+                <Link to="/myposts">
+                    <MenuItem>
+                        <Avatar /> Mis publicaciones
+                    </MenuItem>
+                </Link>
+                
+                <Link to="/profile">
+                    <MenuItem>
+                        <Avatar /> My perfil
+                    </MenuItem>
+                </Link>
+                <Divider />
+
+                <Link to="/newroom">
+                    <MenuItem>
+                        <ListItemIcon>
+                            <PersonAdd fontSize="small" />
+                        </ListItemIcon>
+                        Agregar nuevo alquiler
+                    </MenuItem>
+                </Link>
+
+                <Link to="/myrooms">
+                    <MenuItem>
+                        <ListItemIcon>
+                            <PersonAdd fontSize="small" />
+                        </ListItemIcon>
+                        Mis alquileres
+                    </MenuItem>
+                </Link>
 
                 <Link to="/favorites">
                     <MenuItem>
