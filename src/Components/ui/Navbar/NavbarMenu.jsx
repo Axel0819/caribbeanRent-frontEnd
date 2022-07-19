@@ -1,9 +1,12 @@
 import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Avatar, Menu, MenuItem, ListItemIcon, Divider } from '@mui/material';
 import { PersonAdd, Settings, Logout, Login } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 import { modalEnums } from '../../../Enums/modalEnums';
+import { startLogout } from '../../../Services/Store/slices/auth/actions';
 
 const theme = createTheme({
     palette: {
@@ -14,7 +17,16 @@ const theme = createTheme({
 });
 
 export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
-    const { handleOpenModal } = useContext(MainLayoutContext)
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+    const { handleOpenModal } = useContext(MainLayoutContext);
+    const { uid } = useSelector(state => state.auth)
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        if (pathname !== '/') navigate('/');
+        dispatch(startLogout());
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -53,18 +65,28 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={() => handleOpenModal(modalEnums.login) }>
-                    <ListItemIcon>
-                        <Login color="primary" fontSize="small" />
-                    </ListItemIcon>
-                    Iniciar sesión
-                </MenuItem>
-                <MenuItem onClick={() => handleOpenModal(modalEnums.register) }>
-                    <ListItemIcon>
-                        <PersonAdd color="primary" fontSize="small" />
-                    </ListItemIcon>
-                    Registrarse
-                </MenuItem>
+                {
+                    !(!!uid) && (
+                        <MenuItem onClick={() => handleOpenModal(modalEnums.login)}>
+                            <ListItemIcon>
+                                <Login color="primary" fontSize="small" />
+                            </ListItemIcon>
+                            Iniciar sesión
+                        </MenuItem>
+                    )
+                }
+
+                {
+                    !(!!uid) && (
+                        <MenuItem onClick={() => handleOpenModal(modalEnums.register)}>
+                            <ListItemIcon>
+                                <PersonAdd color="primary" fontSize="small" />
+                            </ListItemIcon>
+                            Registrarse
+                        </MenuItem>
+                    )
+                }
+
                 <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
                     <Avatar /> Buscar rommie
                 </MenuItem>
@@ -78,18 +100,27 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                     </ListItemIcon>
                     Add another account
                 </MenuItem>
-                <MenuItem>
-                    <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                </MenuItem>
-                <MenuItem>
-                    <ListItemIcon>
-                        <Logout fontSize="small" />
-                    </ListItemIcon>
-                    Logout
-                </MenuItem>
+
+
+                <Link to="/favorites">
+                    <MenuItem>
+                        <ListItemIcon>
+                            <Settings fontSize="small" />
+                        </ListItemIcon>
+                        Favorites
+                    </MenuItem>
+                </Link>
+                {
+                    !!uid && (
+                        <MenuItem onClick={handleLogout}>
+                            <ListItemIcon>
+                                <Logout fontSize="small" />
+                            </ListItemIcon>
+                            Logout
+                        </MenuItem>
+                    )
+                }
+
             </Menu>
         </ThemeProvider>
     )

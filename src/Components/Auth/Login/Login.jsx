@@ -10,23 +10,34 @@ import { useContext } from 'react';
 import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 import { modalEnums } from '../../../Enums/modalEnums';
 import { InputForm } from '../InputForm';
+import { useDispatch } from 'react-redux';
+import { startLogin } from '../../../Services/Store/slices/auth/actions';
 
 export const Login = () => {
+
+    const dispatch = useDispatch();
+
     const { handleOpenModal } = useContext(MainLayoutContext);
 
+    const controller = false ? {
+        email: 'pruebita@gmail.com',
+        password: 'test2'
+    } : {
+        email: 'HP@gmail.com',
+        password: '235'
+    }
+
     const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: ''
-        },
+        initialValues: controller,
         validationSchema: Yup.object().shape({
             email: Yup.string().email('Formato de correo incorrecto').required('Campo requerido'),
             password: Yup.string().required('Campo requerido')
         }),
-        onSubmit: (values, actions) => {
-            console.log(values);
+        onSubmit: async (values, actions) => {
 
-            actions.resetForm();
+            dispatch(startLogin(values));
+
+            // actions.resetForm();
         }
     });
 
@@ -37,17 +48,17 @@ export const Login = () => {
 
                 <Divider sx={{ borderColor: '#3B7D7A', width: '450px' }} />
 
-                <form onSubmit={ formik.handleSubmit } className='w-full'>
+                <form onSubmit={formik.handleSubmit} className='w-full'>
                     <div className="flex flex-column gap-20">
 
-                        <InputForm 
-                            name="email" 
+                        <InputForm
+                            name="email"
                             type="email"
                             label="Correo"
-                            formik={ formik } 
+                            formik={formik}
                         />
 
-                        <InputPassword name="password" label="Contraseña" formik={ formik } />
+                        <InputPassword name="password" label="Contraseña" formik={formik} />
 
                         <button type="submit" className="button-style button-action">Continuar</button>
                     </div>
