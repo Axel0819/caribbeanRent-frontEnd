@@ -2,11 +2,12 @@ import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Avatar, Menu, MenuItem, ListItemIcon, Divider } from '@mui/material';
-import { PersonAdd, Settings, Logout, Login } from '@mui/icons-material';
+import { PersonAdd, ExitToApp, Login, Add, ManageAccounts, Bed, HelpOutline, BookmarkBorder, FormatListBulleted } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 import { modalEnums } from '../../../Enums/modalEnums';
 import { startLogout } from '../../../Services/Store/slices/auth/actions';
+import { usersEnums } from '../../../Enums/usersEnums';
 
 const theme = createTheme({
     palette: {
@@ -20,8 +21,14 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { handleOpenModal } = useContext(MainLayoutContext);
-    const { uid } = useSelector(state => state.auth)
+    const { uid, role } = useSelector(state => state.auth)
     const dispatch = useDispatch();
+
+    const logged = uid !== 0;
+
+    const loguedUserArrendatario = () => logged && usersEnums.arrendatario === role;
+
+    const loguedUserArrendante = () => logged && usersEnums.arrendante === role;
 
     const handleLogout = () => {
         if (pathname !== '/') navigate('/');
@@ -65,6 +72,23 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
+
+                {
+                    logged && (
+                        <Link to="/profile">
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <ManageAccounts color="primary" fontSize="small" />
+                                </ListItemIcon>
+                                Editar perfil
+                            </MenuItem>
+                        </Link>
+
+                    )
+                }
+
+                {logged && <Divider />}
+
                 {
                     !(!!uid) && (
                         <MenuItem onClick={() => handleOpenModal(modalEnums.login)}>
@@ -87,56 +111,83 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                     )
                 }
 
-                <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
-                    <Avatar /> Buscar rommie
-                </MenuItem>
+                {/* <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
+                    <Avatar /> Buscar rommie modal
+                </MenuItem> */}
 
-                <Link to="/myposts">
-                    <MenuItem>
-                        <Avatar /> Mis publicaciones
-                    </MenuItem>
-                </Link>
-                
-                <Link to="/profile">
-                    <MenuItem>
-                        <Avatar /> My perfil
-                    </MenuItem>
-                </Link>
-                <Divider />
-
-                <Link to="/newroom">
-                    <MenuItem>
-                        <ListItemIcon>
-                            <PersonAdd fontSize="small" />
-                        </ListItemIcon>
-                        Agregar nuevo alquiler
-                    </MenuItem>
-                </Link>
-
-                <Link to="/myrooms">
-                    <MenuItem>
-                        <ListItemIcon>
-                            <PersonAdd fontSize="small" />
-                        </ListItemIcon>
-                        Mis alquileres
-                    </MenuItem>
-                </Link>
-
-                <Link to="/favorites">
-                    <MenuItem>
-                        <ListItemIcon>
-                            <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Favorites
-                    </MenuItem>
-                </Link>
                 {
-                    !!uid && (
+                    loguedUserArrendante() && (
+                        <Link to="/myposts">
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <FormatListBulleted color="primary" fontSize="small" />
+                                </ListItemIcon>
+                                Mis publicaciones
+                            </MenuItem>
+                        </Link>
+                    )
+                }
+
+                {
+                    loguedUserArrendante() && (
+                        <Link to="/favorites">
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <BookmarkBorder color="primary" fontSize="small" />
+                                </ListItemIcon>
+                                Favoritos
+                            </MenuItem>
+                        </Link>
+                    )
+                }
+
+
+                {
+                    loguedUserArrendatario() && (
+                        <Link to="/newroom">
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <Add color="primary" fontSize="small" />
+                                </ListItemIcon>
+                                Nuevo alquiler
+                            </MenuItem>
+                        </Link>
+                    )
+                }
+
+                {
+                    loguedUserArrendatario() && (
+                        <Link to="/myrooms">
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <Bed color="primary" fontSize="small" />
+                                </ListItemIcon>
+                                Mis alquileres
+                            </MenuItem>
+                        </Link>
+                    )
+                }
+
+                {logged && <Divider />}
+
+                {
+                    logged && (
+                        <MenuItem>
+                            <ListItemIcon>
+                                <HelpOutline color="primary" fontSize="small" />
+                            </ListItemIcon>
+                            Ayuda
+                        </MenuItem>
+                    )
+                }
+
+                {
+                    logged && (
                         <MenuItem onClick={handleLogout}>
                             <ListItemIcon>
-                                <Logout fontSize="small" />
+                                <ExitToApp color="primary" fontSize="small" />
                             </ListItemIcon>
-                            Logout
+                            Cerrar sesión
                         </MenuItem>
                     )
                 }
