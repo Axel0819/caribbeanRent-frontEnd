@@ -1,20 +1,18 @@
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { usersEnums } from '../Enums/usersEnums';
 
 // Se utiliza cuando el usuario esta logueado y queremos que no vaya a una determinada ruta
 // Sugerencias de uso por ahora:
 //  Login
 //  Register
-
 export const PublicRoute = ({ children }) => {
 
-    // const { logged } = useContext( AuthContext );
-    const logged = true;
-    
-    // const lastPath = pathname + search;
-    // localStorage.setItem('lastPath', lastPath );
-    
+    const { uid, role } = useSelector(state => state.auth);
+    const logged = uid !== 0;
+    const roleUser = role !== usersEnums.admin; 
 
-    return (!logged)
+    return (!logged || roleUser)
         ? children
         : <Navigate to="/" />
 }

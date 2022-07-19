@@ -17,7 +17,7 @@ export const CardRent = ({ id, title, description, price, date, images }) => {
 
     return (
         <Card
-            onClick={ handleClick }
+            onClick={handleClick}
             sx={{
                 maxWidth: 345,
                 outline: '2px solid transparent',
