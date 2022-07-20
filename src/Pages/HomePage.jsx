@@ -1,10 +1,26 @@
 import { CardRent } from '../Components/CardRent';
+
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 import { Header } from '../Components/Header/Header.jsx';
+
 
 //esta información de alquileres es temporal
 import { alquileres } from '../Services/data/alquileres';
+import { usersEnums } from '../Enums/usersEnums';
+import { useEffect } from 'react';
 
 export const HomePage = () => {
+  const { role } = useSelector(state => state.auth)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+        if(role === usersEnums.admin){
+            navigate('admin/dashboard');
+        }
+    }, [role, navigate])
+  
   return (
     <div>
       <Header isHome={true} />

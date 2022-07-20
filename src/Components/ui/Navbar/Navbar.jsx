@@ -24,7 +24,7 @@ export const Navbar = () => {
             <Container>
                 <div className="flex justify-content-between">
                     <Link to={"/"}>
-                        <img width={185} src={logo} alt="Logo Caribbean Rent" />
+                        <img className="cursor-pointer" width={185} src={logo} alt="Logo Caribbean Rent" />
                     </Link>
 
                     <div className="flex gap-30 align-items-center">

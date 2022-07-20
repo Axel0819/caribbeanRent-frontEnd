@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardActions, IconButton, Typography, Divider } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { CarouselApp } from '../ui/CarouselApp';
@@ -17,7 +17,7 @@ export const CardRent = ({ id, title, description, price, date, images }) => {
 
     return (
         <Card
-            onClick={ handleClick }
+            onClick={handleClick}
             sx={{
                 maxWidth: 345,
                 outline: '2px solid transparent',

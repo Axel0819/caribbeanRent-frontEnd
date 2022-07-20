@@ -2,39 +2,43 @@ import { useState, Fragment, useContext } from 'react';
 import * as Yup from 'yup';
 import { Box, Stepper, Step, StepButton, Button } from '@mui/material';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { FormRegisterUser } from './FormRegisterUser';
 import { TypeUserForm } from './TypeUserForm';
 import { RegisterContext } from '../../../Services/Context/RegisterContext';
 import { ActionFooterAuth } from '../ActionFooterAuth';
 import { MainLayoutContext } from '../../../Services/Context/MainLayoutContext';
 import { modalEnums } from '../../../Enums/modalEnums';
+import { register } from '../../../Services/Store/slices/auth/actions';
 
 const steps = ['Tipo de usuario', 'Terminar registro'];
 
 //Notas:
 // 1. Mencionarle a Axel que el estado del usuario se agrega de forma estatica
 export const Register = () => {
+    const dispatch = useDispatch();
     const { handleOpenModal } = useContext(MainLayoutContext);
     const [activeStep, setActiveStep] = useState(0);
 
     const formik = useFormik({
         initialValues: {
-            name: '',
-            apellido: '',
-            email: '',
-            rPassword: '',
-            rPasswordConfirmation: '',
+            name: 'testFront4',
+            apellido: 'test3 test4',
+            email: 'test4@gmail.com',
+            rPassword: '123456',
+            rPasswordConfirmation: '123456',
             role: 0,
         },
         validationSchema: Yup.object().shape({
             name: Yup.string().required('Campo requerido'),
-            apellido: Yup.string().required('Campo requerido').matches(/^[aA-zZ\S]+$/, 'No se aceptan espacios'),
+            apellido: Yup.string().required('Campo requerido'),
             email: Yup.string().email('Formato de correo incorrecto').required('Campo requerido'),
             rPassword: Yup.string().min(6, 'La contraseña debe tener al menos 5 caracteres').required('La contraseña es requerida'),
             rPasswordConfirmation: Yup.string().oneOf([Yup.ref('rPassword'), null], 'Las contraseña debe de coincidir').required('Campo requerido')
         }),
         onSubmit: (values, actions) => {
-            console.log(values); 
+
+            dispatch(register(values));
 
             actions.resetForm();
         }

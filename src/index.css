@@ -105,3 +105,12 @@
 }
 
 /* End style scrollbar */
+
+/* sweetalert */
+.swal2-container {
+  z-index: 1000000 !important;
+}
+
+a {
+  all: unset;
+}

@@ -50,7 +50,7 @@ export const FormRegisterUser = () => {
                         <InputForm
                             name="apellido"
                             type="text"
-                            label="Apellido"
+                            label="Apellidos"
                             formik={formik}
                         />
                     </div>
