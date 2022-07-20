@@ -8,6 +8,7 @@ import { Register } from '../Components/Auth';
 import { Footer } from '../Components/ui/Footer';
 import { Login } from '../Components/Auth/Login/Login';
 import { modalEnums } from '../Enums/modalEnums';
+import { RoomiePostModal } from '../Components/RoomiePostModal/RoomiePostModal';
 
 export const MainLayout = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -46,7 +47,7 @@ export const MainLayout = () => {
           </Box>
           
           { typeModal === modalEnums.filter && <h1>Mostrando modal de filtrado</h1> }
-          { typeModal === modalEnums.rommie && <h1>Modal para buscar rommie</h1> }
+          { typeModal === modalEnums.rommie && <RoomiePostModal /> }
         </ModalApp>
       }
 
