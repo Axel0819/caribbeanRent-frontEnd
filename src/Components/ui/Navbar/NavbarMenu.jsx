@@ -111,9 +111,9 @@ export const NavbarMenu = ({ anchorEl, open, handleClose }) => {
                     )
                 }
 
-                {/* <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
+                <MenuItem onClick={() => handleOpenModal(modalEnums.rommie)}>
                     <Avatar /> Buscar rommie modal
-                </MenuItem> */}
+                </MenuItem>
 
                 {
                     loguedUserArrendante() && (

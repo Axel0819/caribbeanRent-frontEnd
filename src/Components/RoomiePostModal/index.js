@@ -1,0 +1,1 @@
+export { RoomiePostModal } from './RoomiePostModal';

@@ -1,5 +1,13 @@
+import { Header } from "../Components/Header/Header"
+
 export const PostRommiePage = () => {
   return (
-    <div>PostRommiePage</div>
+    <div>
+      <Header isHome={false} />
+
+      <p>
+        PostRommiePage
+      </p>
+    </div>
   )
 }
