@@ -29,7 +29,7 @@ export const Navbar = () => {
 
                     <div className="flex gap-30 align-items-center">
 
-                        <Fab 
+                        <Fab
                             size="medium"
                             onClick={() => handleOpenModal(modalEnums.filter)}
                         >
@@ -49,12 +49,12 @@ export const Navbar = () => {
                             <i className="fa fa-solid fa-user color-icon"></i>
                         </Fab>
 
-                        <NavbarMenu 
-                            anchorEl={ anchorEl }
-                            handleClose={ handleClose }
-                            open={ open }
+                        <NavbarMenu
+                            anchorEl={anchorEl}
+                            handleClose={handleClose}
+                            open={open}
                         />
-                        
+
                     </div>
                 </div>
 
